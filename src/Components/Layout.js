@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
@@ -13,21 +13,6 @@ let BLOG_ID = "809323243837962619";
 const openString = `https://docs.google.com/document/d/${DOC_ID}/copy?id=${DOC_ID}&copyCollaborators=false&copyComments=false&title=${DOC_TITLE}&copyDestination=${FOLDER_ID}`;
 let bloggerString = `https://www.blogger.com/blogger.g?blogID=${BLOG_ID}#editor/src=sidebar`;
 
-const onSuggestionSelected = (
-  vent,
-  { suggestion, suggestionValue, suggestionIndex, sectionIndex, method }
-) => {
-  BLOG_ID = suggestion.blogID;
-  bloggerString = `https://www.blogger.com/blogger.g?blogID=${BLOG_ID}#editor/src=sidebar`;
-
-  console.log(vent, {
-    suggestion,
-    suggestionValue,
-    suggestionIndex,
-    sectionIndex,
-    method
-  });
-};
 const onBlogging = () => {
   window.open(openString, "document");
   window.open("https://stackedit.io/app#", "stackedit");
@@ -53,15 +38,35 @@ const styles = theme => ({
 });
 
 function FullWidthGrid(props) {
-  const { classes } = props;
+  const [blogID, setBlogID] = useState(BLOG_ID);
 
+  const onSuggestionSelected = (
+    event,
+    { suggestion, suggestionValue, suggestionIndex, sectionIndex, method }
+  ) => {
+    setBlogID(suggestion.id);
+    bloggerString = `https://www.blogger.com/blogger.g?blogID=${BLOG_ID}#editor/src=sidebar`;
+
+    console.log(event, {
+      suggestion,
+      suggestionValue,
+      suggestionIndex,
+      sectionIndex,
+      method
+    });
+  };
+  const { classes } = props;
   return (
     <div className={classes.root}>
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <Paper className={classes.paper}>
-            <SelectList />
-            {BLOG_ID}
+            <SelectList
+              onSuggestionSelected={onSuggestionSelected}
+              searchLabel="Blogerista"
+              searchPlaceholder="Enter the blog pattern"
+            />
+            {blogID}
             <AutoButton onClick={onBlogging} label="blogging" />
           </Paper>
         </Grid>
