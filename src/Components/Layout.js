@@ -45,15 +45,20 @@ function FullWidthGrid(props) {
     { suggestion, suggestionValue, suggestionIndex, sectionIndex, method }
   ) => {
     setBlogID(suggestion.id);
-    bloggerString = `https://www.blogger.com/blogger.g?blogID=${BLOG_ID}#editor/src=sidebar`;
+    // setBlogID("5020094460495367140");
 
-    console.log(event, {
-      suggestion,
-      suggestionValue,
-      suggestionIndex,
-      sectionIndex,
-      method
-    });
+    bloggerString = `https://www.blogger.com/blogger.g?blogID=${
+      suggestion.id
+    }#editor/src=sidebar`;
+
+    console.log("id", suggestion.id, bloggerString);
+    // console.log(event, {
+    //   suggestion,
+    //   suggestionValue,
+    //   suggestionIndex,
+    //   sectionIndex,
+    //   method
+    // });
   };
   const { classes } = props;
   return (
@@ -67,6 +72,8 @@ function FullWidthGrid(props) {
               searchPlaceholder="Enter the blog pattern"
             />
             {blogID}
+            <br />
+            {bloggerString}
             <AutoButton onClick={onBlogging} label="blogging" />
           </Paper>
         </Grid>
