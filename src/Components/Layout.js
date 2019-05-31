@@ -5,60 +5,109 @@ import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import AutoButton from "./AutoButton";
 import SelectList from "./SelectList";
+import PostNameInput from "./PostNameInput";
+import suggestions from "../Data/blogData";
 
-const DOC_ID = "1iYDEq-gjyXT5get3Cc1A-3kWQ67sYFL4fJ73X2hNlb4";
-const FOLDER_ID = "0B9Uo4HiNk66aOTFBTEJCaVc3bjA";
-const DOC_TITLE = "New Post";
-let BLOG_ID = "809323243837962619";
-const openString = `https://docs.google.com/document/d/${DOC_ID}/copy?id=${DOC_ID}&copyCollaborators=false&copyComments=false&title=${DOC_TITLE}&copyDestination=${FOLDER_ID}`;
-let bloggerString = `https://www.blogger.com/blogger.g?blogID=${BLOG_ID}#editor/src=sidebar`;
-
-const onBlogging = () => {
-  window.open(openString, "document");
-  window.open("https://stackedit.io/app#", "stackedit");
-  window.open("https://app.grammarly.com/ddocs/401948390", "grammarly");
-  window.open(bloggerString, "blogger");
-};
-const onVideo = () => {
-  window.open(
-    "https://www.onlinevideoconverter.com/youtube-converter",
-    "stackedit"
-  );
-  window.open("https://otter.ai/", "otter");
-};
 const styles = theme => ({
   root: {
     flexGrow: 1
   },
   paper: {
     padding: theme.spacing(2),
-    textAlign: "center",
+    // textAlign: "center",
     color: theme.palette.text.secondary
   }
 });
 
-function FullWidthGrid(props) {
-  const [blogID, setBlogID] = useState(BLOG_ID);
+// const makeAlert = () => {
+//   var frog = window.open(
+//     "",
+//     "wildebeast",
+//     "width=300,height=300,scrollbars=1,resizable=1"
+//   );
 
+//   var text = "This is stuff I want to put there";
+
+//   var html = "<html><head></head><body>Hello, <b>" + text + "</b>.";
+//   html += "How are you today?</body></html>";
+
+//   //variable name of window must be included for all three of the following methods so that
+//   //javascript knows not to write the string to this window, but instead to the new window
+
+//   frog.document.open();
+//   frog.document.write(html);
+//   frog.document.close();
+// };
+
+// const onVideo = () => {
+//   window.open(
+//     "https://www.onlinevideoconverter.com/youtube-converter",
+//     "stackedit"
+//   );
+//   window.open("https://otter.ai/", "otter");
+// };
+
+// const requestNotification = () => {
+//   Notification.requestPermission(function(status) {
+//     console.log("Notification permission status:", status);
+//   });
+// };
+
+// const sendNotification = () => {
+//   if (Notification.permission === "granted") {
+//     navigator.serviceWorker.getRegistration().then(function(reg) {
+//       var options = {
+//         body: "Here is a notification body!",
+//         //icon: 'images/example.png',
+//         vibrate: [100, 50, 100],
+//         data: {
+//           dateOfArrival: Date.now(),
+//           primaryKey: 1
+//         }
+//       };
+//       reg.showNotification("Hello world!", options);
+//     });
+//   }
+// };
+function FullWidthGrid(props) {
+  const [selection, setSelection] = useState({});
+  const [postName, setPostName] = useState("");
+  const checkBloggable = () => {
+    const button = document.querySelector("#blogit");
+    console.log("postName", "'" + postName + "'");
+    if (postName === "") {
+      button.style.backgroundColor = "gray";
+    } else {
+      button.style.backgroundColor = "";
+    }
+  };
+  const onPostNameChange = event => {
+    setPostName(event.target.value);
+    checkBloggable();
+  };
   const onSuggestionSelected = (
     event,
     { suggestion, suggestionValue, suggestionIndex, sectionIndex, method }
   ) => {
-    setBlogID(suggestion.id);
-    // setBlogID("5020094460495367140");
+    setSelection(suggestion);
+    checkBloggable();
+  };
+  const onBlogging = () => {
+    const DOC_ID = "1iYDEq-gjyXT5get3Cc1A-3kWQ67sYFL4fJ73X2hNlb4";
 
-    bloggerString = `https://www.blogger.com/blogger.g?blogID=${
-      suggestion.id
+    const openString = `https://docs.google.com/document/d/${DOC_ID}/copy?id=${DOC_ID}&copyCollaborators=false&copyComments=false&title=${postName}&copyDestination=${
+      selection.folder
+    }`;
+    const bloggerString = `https://www.blogger.com/blogger.g?blogID=${
+      selection.id
     }#editor/src=sidebar`;
 
-    console.log("id", suggestion.id, bloggerString);
-    // console.log(event, {
-    //   suggestion,
-    //   suggestionValue,
-    //   suggestionIndex,
-    //   sectionIndex,
-    //   method
-    // });
+    window.open(bloggerString, "blogger");
+    window.open("https://app.grammarly.com/ddocs/401948390", "grammarly");
+    window.open("https://stackedit.io/app#", "stackedit");
+    window.open(openString, "document");
+    // setTimeout(sendNotification, 10000);
+    // setTimeout(sendNotification, 20000);
   };
   const { classes } = props;
   return (
@@ -67,23 +116,46 @@ function FullWidthGrid(props) {
         <Grid item xs={12}>
           <Paper className={classes.paper}>
             <SelectList
+              suggestions={suggestions}
               onSuggestionSelected={onSuggestionSelected}
-              searchLabel="Blogerista"
+              searchLabel="Blog"
               searchPlaceholder="Enter the blog pattern"
             />
-            {blogID}
+
+            <PostNameInput onChange={onPostNameChange} />
             <br />
-            {bloggerString}
-            <AutoButton onClick={onBlogging} label="blogging" />
+            <AutoButton
+              onClick={() => onBlogging}
+              label="Blog it!"
+              id="blogit"
+            />
+            {/* <AutoButton
+              onClick={requestNotification}
+              label="Req Notification"
+              id="requestit"
+            />
+            <AutoButton
+              onClick={sendNotification}
+              label="Send it"
+              id="sendit"
+            /> */}
+
+            <br />
+            {selection.id}
+            <br />
+            {selection.folder}
+            <br />
+            {postName}
+            <br />
           </Paper>
         </Grid>
-        <Grid item xs={12} sm={6}>
+        {/* <Grid item xs={12} sm={6}>
           <Paper className={classes.paper}>
             <AutoButton onClick={onVideo} label="transcription">
               Blogging
             </AutoButton>
           </Paper>
-        </Grid>
+        </Grid> */}
         {/* <Grid item xs={12} sm={6}>
           <Paper className={classes.paper}>xs=30 sm=6</Paper>
         </Grid>
