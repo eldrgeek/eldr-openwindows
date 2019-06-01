@@ -70,26 +70,31 @@ const styles = theme => ({
 //   }
 // };
 function FullWidthGrid(props) {
-  const [selection, setSelection] = useState({});
-  const [postName, setPostName] = useState("");
-  const checkBloggable = () => {
-    const button = document.querySelector("#blogit");
+  let [selection, setSelection] = useState({});
+  let [postName, setPostName] = useState("");
+  const setButtonColor = id => {
+    const button = document.querySelector(id);
     console.log("postName", "'" + postName + "'");
-    if (postName === "") {
+    if (postName === "" || !selection.folder) {
       button.style.backgroundColor = "gray";
     } else {
       button.style.backgroundColor = "";
     }
   };
+  const checkBloggable = () => {
+    setButtonColor("#blogit");
+  };
+  setTimeout(checkBloggable, 0);
+  // checkBloggable();
   const onPostNameChange = event => {
-    setPostName(event.target.value);
+    setPostName((postName = event.target.value));
     checkBloggable();
   };
   const onSuggestionSelected = (
     event,
     { suggestion, suggestionValue, suggestionIndex, sectionIndex, method }
   ) => {
-    setSelection(suggestion);
+    setSelection((selection = suggestion));
     checkBloggable();
   };
   const onBlogging = () => {
@@ -125,7 +130,8 @@ function FullWidthGrid(props) {
             <PostNameInput onChange={onPostNameChange} />
             <br />
             <AutoButton
-              onClick={() => onBlogging}
+              key="button1    "
+              onClick={onBlogging}
               label="Blog it!"
               id="blogit"
             />
@@ -140,13 +146,13 @@ function FullWidthGrid(props) {
               id="sendit"
             /> */}
 
-            <br />
+            {/* <br />
             {selection.id}
             <br />
             {selection.folder}
             <br />
             {postName}
-            <br />
+            <br /> */}
           </Paper>
         </Grid>
         {/* <Grid item xs={12} sm={6}>
