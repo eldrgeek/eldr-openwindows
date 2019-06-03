@@ -25,12 +25,17 @@ const suggestions = [
     id: "8427239506598292014",
     folder: ""
   },
+  {
+    blog: "Metameditations",
+    id: "7084648308646134853",
+    folder: "1k7D6ai8eajv07PJQ-kMtXnBoE2i-EC-d"
+  },
+
   { blog: "Awesome Development", id: "4647126966183992311" },
   { blog: "Blue Hill Hackers", id: "3416541093599519804" },
   { blog: "For the Borglings", id: "1132572901292308138" },
   { blog: "Liberal Legacy", id: "3991748264161925863" },
   { blog: "My Future Self’s Blog", id: "3991748264161925863" },
-  { blog: "My Own Memento", id: "7084648308646134853" },
   { blog: "Reality isn’t optional", id: "272400206626152900" },
   { blog: "Self Referential Meta", id: "272400206626152900" },
   { blog: "Technology Breadcrumbs", id: "4694119469072911822" },
