@@ -136,7 +136,7 @@ function FullWidthGrid(props) {
             <AutoButton
               key="button1 "
               onClick={onBlogging}
-              label="Blog It!"
+              label="Blog It! buddy"
               id="blogit"
             />
             {/* <AutoButton
