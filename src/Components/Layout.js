@@ -90,11 +90,15 @@ function FullWidthGrid(props) {
     setPostName((postName = event.target.value));
     checkBloggable();
   };
+  // eslint-disable-next-line no-use-before-define
   const onSuggestionSelected = (
+// eslint-disable-next-line no-use-before-define
     event,
-    { suggestion, suggestionValue, suggestionIndex, sectionIndex, method }
+    { suggestion /*, suggestionValue, suggestionIndex, sectionIndex, method */}
   ) => {
+
     setSelection((selection = suggestion));
+
     checkBloggable();
   };
   const onBlogging = () => {
@@ -130,9 +134,9 @@ function FullWidthGrid(props) {
             <PostNameInput onChange={onPostNameChange} />
             <br />
             <AutoButton
-              key="button1    "
+              key="button1 "
               onClick={onBlogging}
-              label="Blog it!"
+              label="Blog It!"
               id="blogit"
             />
             {/* <AutoButton
@@ -187,3 +191,4 @@ FullWidthGrid.propTypes = {
 };
 
 export default withStyles(styles)(FullWidthGrid);
+//export default FullWidthGrid;
