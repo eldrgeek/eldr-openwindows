@@ -92,11 +92,10 @@ function FullWidthGrid(props) {
   };
   // eslint-disable-next-line no-use-before-define
   const onSuggestionSelected = (
-// eslint-disable-next-line no-use-before-define
+    // eslint-disable-next-line no-use-before-define
     event,
-    { suggestion /*, suggestionValue, suggestionIndex, sectionIndex, method */}
+    { suggestion /*, suggestionValue, suggestionIndex, sectionIndex, method */ }
   ) => {
-
     setSelection((selection = suggestion));
 
     checkBloggable();
@@ -136,7 +135,7 @@ function FullWidthGrid(props) {
             <AutoButton
               key="button1 "
               onClick={onBlogging}
-              label="Blog It! buddy"
+              label="BloIt!!!"
               id="blogit"
             />
             {/* <AutoButton
