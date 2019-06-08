@@ -181,7 +181,7 @@ IntegrationAutosuggest.defaultProps = {
   onSuggestionSelected: () => {
     console.log("default suggestionSelected");
   },
-  suggeestions: defaultSuggestions
+  suggestions: defaultSuggestions
 };
 
 export default IntegrationAutosuggest;
