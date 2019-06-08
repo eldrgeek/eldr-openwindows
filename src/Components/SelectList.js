@@ -109,6 +109,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function IntegrationAutosuggest(props) {
+  console.log("props", props);
   suggestions = props.suggestions;
   const classes = useStyles();
   // const [anchorEl, setAnchorEl] = React.useState(null);
@@ -174,6 +175,7 @@ function IntegrationAutosuggest(props) {
 }
 
 IntegrationAutosuggest.defaultProps = {
+  foo: "fab",
   searchLabel: "default searchLabel",
   placeholder: "default placeholder",
   onSuggestionSelected: () => {
