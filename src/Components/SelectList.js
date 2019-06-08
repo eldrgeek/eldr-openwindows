@@ -182,30 +182,4 @@ IntegrationAutosuggest.defaultProps = {
   suggeestions: defaultSuggestions
 };
 
-// const onSuggestionSelected = (
-//   vent,
-//   { suggestion, suggestionValue, suggestionIndex, sectionIndex, method }
-// ) => {
-//   console.log(vent, {
-//     suggestion,
-//     suggestionValue,
-//     suggestionIndex,
-//     sectionIndex,
-//     method
-//   });
-// };
-
-const MyAutoSuggest = props => {
-  let newprops = Object.assign(
-    {
-      // onSuggestionSelected,
-      // searchLabel: "Blog",
-      searchPlaceholder: "Enter blog pattern"
-    },
-    Object.create(props)
-  );
-  // console.log(props, newprops);
-  return IntegrationAutosuggest(props);
-};
-
-export default MyAutoSuggest;
+export default IntegrationAutosuggest;
