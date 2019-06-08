@@ -6,6 +6,7 @@ import parse from "autosuggest-highlight/parse";
 import TextField from "@material-ui/core/TextField";
 import Paper from "@material-ui/core/Paper";
 import MenuItem from "@material-ui/core/MenuItem";
+import defaultSuggestions from "../Data/blogData";
 // import Popper from "@material-ui/core/Popper";
 import { makeStyles } from "@material-ui/core/styles";
 // import { prototype } from "events";
@@ -171,6 +172,15 @@ function IntegrationAutosuggest(props) {
     </div>
   );
 }
+
+IntegrationAutosuggest.defaultProps = {
+  searchLabel: "default searchLabel",
+  placeholder: "default placeholder",
+  onSuggestionSelected: () => {
+    console.log("default suggestionSelected");
+  },
+  suggeestions: defaultSuggestions
+};
 
 // const onSuggestionSelected = (
 //   vent,
