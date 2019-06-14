@@ -9,6 +9,6 @@ const AutoButton = props => {
   );
 };
 AutoButton.defaultProps = {
-  label: "test"
+  label: "testing"
 };
 export default AutoButton;
