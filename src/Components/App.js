@@ -1,8 +1,11 @@
+import { hot } from "react-hot-loader";
+
 import React from "react";
 import Layout from "./Layout";
 // import { hot } from 'react-hot-loader/root'
+
 import CountButton from "./CountButton";
-// const AutoButton = (props) => {
+const finishHot = hot(module); // const AutoButton = (props) => {
 // return  <Button variant="contained" color="primary" onClick={props.onClick}>
 //         {props.label}
 //       </Button>
@@ -16,5 +19,5 @@ function App() {
   );
 }
 //test
-// export default process.env.NODE_ENV === "development" ? hot(App) : App
-export default App;
+export default (process.env.NODE_ENV === "development" ? finishHot(App) : App);
+//export default App;

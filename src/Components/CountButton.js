@@ -10,7 +10,7 @@ function App() {
     <div>
       {/* <MuiThemeProvider> */}
       <Button
-        label={"Click on Me  " + count}
+        label={"Click on Me" + count}
         onClick={click}
         style={{
           height: "40px",
@@ -18,7 +18,7 @@ function App() {
           backgroundColor: "#ffb400" //hex color values
         }}
       >
-        {"Click on Me  " + count}
+        {"Click on Me really" + count}
       </Button>
       {/* </MuiThemeProvider> */}
     </div>

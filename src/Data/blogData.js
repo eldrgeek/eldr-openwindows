@@ -31,7 +31,11 @@ const suggestions = [
     folder: "1k7D6ai8eajv07PJQ-kMtXnBoE2i-EC-d"
   },
 
-  { blog: "Awesome Development", id: "4647126966183992311" },
+  {
+    blog: "Awesome Development",
+    id: "4647126966183992311",
+    folder: "1NXiHyIHssTrhRqnUMRH91gmGRufWRhG9"
+  },
   { blog: "Blue Hill Hackers", id: "3416541093599519804" },
   { blog: "For the Borglings", id: "1132572901292308138" },
   { blog: "Liberal Legacy", id: "3991748264161925863" },

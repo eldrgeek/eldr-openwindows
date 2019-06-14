@@ -77,12 +77,14 @@ function FullWidthGrid(props) {
     console.log("postName", "'" + postName + "'");
     if (postName === "" || !selection.folder) {
       button.style.backgroundColor = "gray";
+      return false;
     } else {
       button.style.backgroundColor = "";
+      return true;
     }
   };
   const checkBloggable = () => {
-    setButtonColor("#blogit");
+    return setButtonColor("#blogit");
   };
   setTimeout(checkBloggable, 0);
   // checkBloggable();
@@ -101,6 +103,9 @@ function FullWidthGrid(props) {
     checkBloggable();
   };
   const onBlogging = () => {
+    if (!checkBloggable()) {
+      return;
+    }
     const DOC_ID = "1iYDEq-gjyXT5get3Cc1A-3kWQ67sYFL4fJ73X2hNlb4";
 
     const openString = `https://docs.google.com/document/d/${DOC_ID}/copy?id=${DOC_ID}&copyCollaborators=false&copyComments=false&title=${postName}&copyDestination=${
@@ -135,7 +140,7 @@ function FullWidthGrid(props) {
             <AutoButton
               key="button1 "
               onClick={onBlogging}
-              label="BloIt!!!"
+              label="Blog It!"
               id="blogit"
             />
             {/* <AutoButton
